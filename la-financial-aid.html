@@ -1,0 +1,1120 @@
+<title>Louisiana Financial Aid Guide</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@400;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+
+<style>
+  /* === TOKENS === */
+  :root {
+    --bg:        #f7f6f3;
+    --surface:   #ffffff;
+    --border:    #dcdad4;
+    --muted:     #6b6760;
+    --fg:        #1a1916;
+    --heading:   #0f2a4a;
+    --accent:    #1a5c8a;
+    --accent-lt: #e8f2f9;
+    --warn:      #7a3b00;
+    --warn-lt:   #fff4e6;
+    --tag-bg:    #eaf0f6;
+    --tag-fg:    #0f2a4a;
+    --green:     #1a6b3a;
+    --green-lt:  #e6f5ec;
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg:        #131211;
+      --surface:   #1e1c1a;
+      --border:    #333129;
+      --muted:     #9e9b94;
+      --fg:        #eae8e2;
+      --heading:   #a8c8e8;
+      --accent:    #5aaee0;
+      --accent-lt: #0f2233;
+      --warn:      #f4a347;
+      --warn-lt:   #221400;
+      --tag-bg:    #1a2530;
+      --tag-fg:    #a8c8e8;
+      --green:     #6dcf94;
+      --green-lt:  #0d2318;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg:        #131211;
+    --surface:   #1e1c1a;
+    --border:    #333129;
+    --muted:     #9e9b94;
+    --fg:        #eae8e2;
+    --heading:   #a8c8e8;
+    --accent:    #5aaee0;
+    --accent-lt: #0f2233;
+    --warn:      #f4a347;
+    --warn-lt:   #221400;
+    --tag-bg:    #1a2530;
+    --tag-fg:    #a8c8e8;
+    --green:     #6dcf94;
+    --green-lt:  #0d2318;
+    color-scheme: dark;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  body {
+    font-family: 'IBM Plex Sans', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--fg);
+    margin: 0;
+    padding: 0 16px;
+    padding-block: 32px;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+  .page { max-width: 820px; margin: 0 auto; }
+
+  /* === HEADER === */
+  .doc-header {
+    border-top: 4px solid var(--accent);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-top-width: 4px;
+    border-top-color: var(--accent);
+    border-radius: 6px;
+    padding: 28px 32px;
+    margin-bottom: 20px;
+  }
+  .doc-header h1 {
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--heading);
+    margin: 0 0 4px;
+    text-wrap: balance;
+  }
+  .doc-header .subtitle {
+    color: var(--muted);
+    font-size: 12px;
+    margin: 0;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+  .doc-header .meta {
+    margin-top: 14px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    font-size: 12px;
+  }
+  .doc-header .meta span {
+    background: var(--tag-bg);
+    color: var(--tag-fg);
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-weight: 500;
+  }
+
+  /* === HOUSEHOLD BOX === */
+  .household-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--accent);
+    border-radius: 6px;
+    padding: 14px 18px;
+    margin-bottom: 16px;
+    font-size: 13px;
+  }
+  .household-box .hh-title {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    font-weight: 600;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+  .household-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 8px 16px;
+  }
+  .hh-item { display: flex; flex-direction: column; gap: 1px; }
+  .hh-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); font-weight: 600; }
+  .hh-val { font-size: 13px; font-weight: 600; color: var(--fg); }
+  .hh-val.urgent { color: var(--warn); }
+
+  /* === WARNING BANNER === */
+  .warn-banner {
+    background: var(--warn-lt);
+    border: 1px solid var(--warn);
+    border-radius: 5px;
+    padding: 11px 15px;
+    font-size: 13px;
+    color: var(--warn);
+    margin-bottom: 16px;
+    font-weight: 500;
+  }
+
+  /* === URGENT BOX === */
+  .urgent-box {
+    background: var(--warn-lt);
+    border: 2px solid var(--warn);
+    border-radius: 6px;
+    padding: 16px 20px;
+    margin-bottom: 20px;
+  }
+  .urgent-box h3 {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--warn);
+    margin: 0 0 10px;
+    font-weight: 700;
+  }
+  .urgent-list {
+    margin: 0;
+    padding: 0 0 0 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  .urgent-list li { font-size: 14px; }
+  .urgent-list strong { color: var(--heading); }
+
+  /* === PRIORITY BOX === */
+  .priority-box {
+    background: var(--accent-lt);
+    border: 1px solid var(--accent);
+    border-radius: 6px;
+    padding: 16px 20px;
+    margin-bottom: 28px;
+  }
+  .priority-box h3 {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin: 0 0 10px;
+    font-weight: 600;
+  }
+  .priority-list {
+    margin: 0;
+    padding: 0 0 0 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  .priority-list li { font-size: 14px; }
+  .priority-list strong { color: var(--heading); }
+
+  /* === SECTION === */
+  .section { margin-bottom: 26px; break-inside: avoid; }
+  .section-heading {
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--heading);
+    margin: 0 0 12px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .section-num {
+    background: var(--accent);
+    color: #fff;
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  /* === PROGRAM CARD === */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    margin-bottom: 12px;
+    overflow: hidden;
+    break-inside: avoid;
+  }
+  .card.highlight { border-color: var(--warn); border-width: 2px; }
+  .card.green-card { border-color: var(--green); border-width: 2px; }
+  .card-head {
+    background: var(--accent-lt);
+    border-bottom: 1px solid var(--border);
+    padding: 10px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .card.highlight .card-head { background: var(--warn-lt); }
+  .card.green-card .card-head { background: var(--green-lt); }
+  .card-head h3 { font-size: 14px; font-weight: 600; color: var(--heading); margin: 0; }
+  .card-tag {
+    font-size: 11px;
+    background: var(--tag-bg);
+    color: var(--tag-fg);
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+  }
+  .card-tag.warn-tag { background: var(--warn-lt); color: var(--warn); }
+  .card-tag.green-tag { background: var(--green-lt); color: var(--green); }
+  .card-body {
+    padding: 14px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  /* === BENEFIT AMOUNTS === */
+  .benefit-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 0;
+  }
+  .benefit-chip {
+    background: var(--green-lt);
+    border: 1px solid var(--green);
+    border-radius: 4px;
+    padding: 4px 10px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--green);
+  }
+
+  /* === CONTACT ROW === */
+  .contacts { display: flex; flex-wrap: wrap; gap: 8px; }
+  .contact-item { display: flex; flex-direction: column; gap: 2px; min-width: 150px; }
+  .contact-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.07em; color: var(--muted); font-weight: 600; }
+  .contact-val { font-size: 13px; font-weight: 600; color: var(--accent); font-variant-numeric: tabular-nums; }
+
+  /* === SCRIPT BLOCKS === */
+  .script-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    font-weight: 600;
+    color: var(--muted);
+    margin-bottom: 4px;
+  }
+  .script-box {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 11px 14px;
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--fg);
+  }
+  .script-box .fill { font-weight: 700; color: var(--accent); }
+  .script-box .pre { font-weight: 700; color: var(--fg); }
+
+  /* === CHECKLIST === */
+  .checklist {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  .checklist li {
+    font-size: 13px;
+    padding-left: 22px;
+    position: relative;
+  }
+  .checklist li::before {
+    content: '☐';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-size: 15px;
+    line-height: 1.3;
+  }
+  .checklist .note { font-size: 11px; color: var(--muted); display: block; }
+
+  /* === TABLE === */
+  .data-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .data-table th {
+    text-align: left;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+    padding: 6px 10px;
+    border-bottom: 2px solid var(--border);
+    font-weight: 600;
+  }
+  .data-table td { padding: 7px 10px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  .data-table tr:last-child td { border-bottom: none; }
+  .table-wrap { overflow-x: auto; min-width: 0; }
+
+  /* === DIVIDER === */
+  .divider { border: none; border-top: 1px solid var(--border); margin: 6px 0; }
+
+  /* === INFO ROW === */
+  .info-row { font-size: 13px; color: var(--muted); }
+  .info-row strong { color: var(--fg); }
+
+  /* === FOOTER === */
+  .doc-footer {
+    margin-top: 36px;
+    border-top: 1px solid var(--border);
+    padding-top: 14px;
+    font-size: 12px;
+    color: var(--muted);
+    text-align: center;
+  }
+
+  /* === PRINT === */
+  @media print {
+    body { background: #fff; color: #000; padding: 0; font-size: 11px; }
+    .page { max-width: 100%; }
+    .card, .section, .priority-box, .warn-banner, .urgent-box, .household-box { break-inside: avoid; }
+    .card-head { background: #eef4fa !important; }
+    .card.highlight .card-head { background: #fff4e6 !important; }
+    .card.green-card .card-head { background: #e6f5ec !important; }
+    .script-box { background: #f8f8f8 !important; border: 1px solid #ccc !important; }
+    .doc-header { border: 1px solid #ccc !important; border-top: 4px solid #1a5c8a !important; }
+    .section-num { background: #1a5c8a !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .benefit-chip { background: #e6f5ec !important; border: 1px solid #1a6b3a !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .urgent-box { background: #fff4e6 !important; border: 2px solid #7a3b00 !important; }
+    .priority-box { background: #e8f2f9 !important; }
+    .household-box { background: #fff !important; }
+  }
+</style>
+
+<div class="page">
+
+  <div class="doc-header">
+    <p class="subtitle">Louisiana Homeowner Resources — Personalized Guide</p>
+    <h1>Financial Assistance: Mortgage, Utilities, Repairs &amp; Weatherization</h1>
+    <div class="meta">
+      <span>Lindsey McCann Fryar</span>
+      <span>208 Glen Ellen Dr · Pineville, LA 71360</span>
+      <span>Rapides Parish</span>
+      <span>October 2026</span>
+    </div>
+  </div>
+
+  <!-- HOUSEHOLD INFO -->
+  <div class="household-box">
+    <div class="hh-title">Your Household at a Glance</div>
+    <div class="household-grid">
+      <div class="hh-item">
+        <span class="hh-label">Phone</span>
+        <span class="hh-val">318-392-3933</span>
+      </div>
+      <div class="hh-item">
+        <span class="hh-label">Email</span>
+        <span class="hh-val">themavisjade@gmail.com</span>
+      </div>
+      <div class="hh-item">
+        <span class="hh-label">Household Size</span>
+        <span class="hh-val">3–4 (incl. Nathan)</span>
+      </div>
+      <div class="hh-item">
+        <span class="hh-label">Annual Income</span>
+        <span class="hh-val">~$35,000</span>
+      </div>
+      <div class="hh-item">
+        <span class="hh-label">Cleco Account</span>
+        <span class="hh-val">200003558448</span>
+      </div>
+      <div class="hh-item">
+        <span class="hh-label">Cleco Balance Due</span>
+        <span class="hh-val urgent">$912.81 (Sept 2026)</span>
+      </div>
+      <div class="hh-item">
+        <span class="hh-label">Disabled Dependent</span>
+        <span class="hh-val">Nathan (DOB 10/15/2004)</span>
+      </div>
+      <div class="hh-item">
+        <span class="hh-label">Home Size</span>
+        <span class="hh-val">1,550 sq ft · owner-occupied</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- URGENT ACTIONS -->
+  <div class="urgent-box">
+    <h3>⚡ Do These First — This Week</h3>
+    <ol class="urgent-list">
+      <li><strong>Call 211 TODAY</strong> — ask specifically for LIHEAP Crisis Assistance. Up to $1,000 available — can cover your $912.81 Cleco bill.</li>
+      <li><strong>Call Cleco: 1-800-622-6537</strong> — request a payment arrangement on Account 200003558448 before a disconnect notice arrives.</li>
+      <li><strong>Tell every agency about Nathan</strong> — his disability status qualifies your household for priority processing in LIHEAP, WAP weatherization, and many repair programs.</li>
+      <li><strong>Gather documents now</strong> — Social Security cards for everyone, IDs, income proof, current Cleco bill. See the Document Checklist at the end of this guide.</li>
+    </ol>
+  </div>
+
+  <!-- APPLY IN ORDER -->
+  <div class="priority-box">
+    <h3>Apply in This Order</h3>
+    <ol class="priority-list">
+      <li><strong>211 → LIHEAP Crisis</strong> — fastest money, covers utility balance up to $1,000</li>
+      <li><strong>Cleco payment plan</strong> — stop the late fees and protect service while aid is processing</li>
+      <li><strong>SNAP</strong> — 20-minute online application; frees up cash for bills immediately</li>
+      <li><strong>HAF + LHC</strong> — mortgage assistance; bigger process but biggest payout</li>
+      <li><strong>HUD HOME Rehab</strong> — grants/deferred loans for roof, electrical, plumbing (Hurricane Laura damage qualifies)</li>
+      <li><strong>WAP Weatherization</strong> — free insulation, windows, HVAC ($8,547 avg value)</li>
+      <li><strong>Cleco PowerWise contractors</strong> — free energy audit + weatherization installs (Rapides Parish)</li>
+      <li><strong>HUD Counselor</strong> — free expert to help navigate all programs simultaneously</li>
+      <li><strong>Homestead Exemption</strong> — one form at parish assessor, permanent property tax reduction</li>
+    </ol>
+  </div>
+
+  <div class="warn-banner">
+    ⚠ Verify all phone numbers on official websites before calling. HAF funds can close without notice. Always confirm a program is actively accepting applications before gathering documents.
+  </div>
+
+  <!-- SECTION 1: HAF -->
+  <div class="section">
+    <h2 class="section-heading"><span class="section-num">1</span> Louisiana HAF — Homeowner Assistance Fund</h2>
+
+    <div class="card">
+      <div class="card-head">
+        <h3>Louisiana Housing Corporation (LHC) — LA HAF</h3>
+        <span class="card-tag">Mortgage Assistance</span>
+      </div>
+      <div class="card-body">
+        <p class="info-row">Covers past-due mortgage payments, property taxes, insurance, and HOA fees for homeowners experiencing pandemic-related hardship. Administered by LHC.</p>
+        <div class="contacts">
+          <div class="contact-item">
+            <span class="contact-label">Phone</span>
+            <span class="contact-val">1-888-454-2001</span>
+          </div>
+          <div class="contact-item">
+            <span class="contact-label">Website</span>
+            <span class="contact-val">lhc.la.gov</span>
+          </div>
+          <div class="contact-item">
+            <span class="contact-label">Email</span>
+            <span class="contact-val">hausistance@lhc.la.gov</span>
+          </div>
+        </div>
+        <hr class="divider">
+        <div>
+          <div class="script-label">Phone Script</div>
+          <div class="script-box">
+            "Hi, my name is <span class="fill">Lindsey Fryar</span> and I'm a Louisiana homeowner at <span class="fill">208 Glen Ellen Dr, Pineville, LA 71360</span> in Rapides Parish. I'm calling to ask about the Homeowner Assistance Fund — whether it's accepting applications and how to apply.<br><br>
+            I'm experiencing financial hardship and need help with my mortgage payment. My household income is approximately $35,000 per year. I also have a disabled adult dependent in the household. Can you tell me what documents I'll need, the income limits, and the current processing timeline?"
+          </div>
+        </div>
+        <div>
+          <div class="script-label">Email — Subject: HAF Application Inquiry – Lindsey Fryar – 208 Glen Ellen Dr, Pineville LA</div>
+          <div class="script-box">
+            Hello,<br><br>
+            My name is <span class="fill">Lindsey McCann Fryar</span> and I am the owner of a home at <span class="fill">208 Glen Ellen Dr, Pineville, LA 71360</span> (Rapides Parish). I am writing to inquire about applying for the Louisiana Homeowner Assistance Fund.<br><br>
+            Our household income is approximately $35,000/year. Our household includes a disabled adult dependent (Nathan Fryar, DOB 10/15/2004, mental health disability). We are experiencing financial hardship and are behind on mortgage payments.<br><br>
+            I would like to know: (1) Is the program currently accepting applications? (2) What documents are required? (3) What is the current processing timeline?<br><br>
+            I can be reached at 318-392-3933 or themavisjade@gmail.com.<br><br>
+            Thank you,<br>Lindsey McCann Fryar
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 2: LIHEAP -->
+  <div class="section">
+    <h2 class="section-heading"><span class="section-num">2</span> LIHEAP — Utility &amp; Crisis Assistance (LHC)</h2>
+
+    <div class="card highlight">
+      <div class="card-head">
+        <h3>Louisiana Housing Corporation — LIHEAP Crisis Assistance</h3>
+        <span class="card-tag warn-tag">⚡ Up to $1,000 — Can Cover Your Cleco Bill NOW</span>
+      </div>
+      <div class="card-body">
+        <div class="benefit-row">
+          <span class="benefit-chip">Crisis: up to $1,000</span>
+          <span class="benefit-chip">Cooling: $200–$800 (through Sept 30)</span>
+          <span class="benefit-chip">Weatherization: avg $8,547</span>
+        </div>
+        <p class="info-row">LIHEAP is administered by LHC through local Community Action Agencies. <strong>Apply by calling 211</strong> — they will route you to your Rapides Parish agency. Crisis assistance covers disconnect notices, past-due balances, and broken heating/cooling. Your household qualifies for <strong>priority processing</strong> because Nathan has a documented disability.</p>
+        <div class="contacts">
+          <div class="contact-item">
+            <span class="contact-label">Apply Via</span>
+            <span class="contact-val">Call or Text 211</span>
+          </div>
+          <div class="contact-item">
+            <span class="contact-label">LHC Main</span>
+            <span class="contact-val">225-763-8700</span>
+          </div>
+          <div class="contact-item">
+            <span class="contact-label">LHC Contact</span>
+            <span class="contact-val">lhartley@lhc.la.gov</span>
+          </div>
+          <div class="contact-item">
+            <span class="contact-label">Online Referral</span>
+            <span class="contact-val">findhelp.org</span>
+          </div>
+        </div>
+        <hr class="divider">
+        <p class="info-row"><strong>Program windows (plan year 10/1/2025–9/30/2026):</strong><br>
+        • Cooling Assistance: April 1 – Sept 30, 2026 ($200–$800)<br>
+        • Year-Round Crisis: any time ($200–$1,000) — for disconnect notice, past-due balance, broken HVAC<br>
+        • Weatherization: July 2026–June 2027 (avg $8,547/unit — see Section 7)</p>
+        <hr class="divider">
+        <div>
+          <div class="script-label">Phone Script — Call 211, then use this when connected to your local agency</div>
+          <div class="script-box">
+            "Hi, my name is <span class="fill">Lindsey Fryar</span> and I'm calling to apply for LIHEAP utility assistance — specifically the Crisis Assistance program. I live at <span class="fill">208 Glen Ellen Dr, Pineville, LA 71360</span> in Rapides Parish.<br><br>
+            My Cleco account number is <span class="fill">200003558448</span> and my current balance is past due. My household income is approximately $35,000 per year for a household of <span class="fill">3–4</span>. I have a disabled adult dependent — my son Nathan, date of birth October 15, 2004, with mental health disabilities — which I understand qualifies us for priority processing.<br><br>
+            Can you tell me if I qualify, what documents to bring, and your earliest available appointment?"
+          </div>
+        </div>
+        <div>
+          <div class="script-label">If Denied — You Have Appeal Rights</div>
+          <div class="script-box">
+            <span class="pre">Step 1:</span> Request written denial from the local agency. You have 15 days to appeal to them directly.<br>
+            <span class="pre">Step 2:</span> If still denied, submit written appeal to LHC (Lauren Holmes, lhartley@lhc.la.gov, 225-763-8700) within 10 days.<br>
+            <span class="pre">Step 3:</span> If still denied, request Administrative Law Judge hearing through LHC.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 3: CLECO -->
+  <div class="section">
+    <h2 class="section-heading"><span class="section-num">3</span> Your Cleco Account — Payment Plan &amp; Hardship Programs</h2>
+
+    <div class="card highlight">
+      <div class="card-head">
+        <h3>Cleco Power — Account 200003558448</h3>
+        <span class="card-tag warn-tag">Balance Due: $912.81 · Call Before Disconnect Notice</span>
+      </div>
+      <div class="card-body">
+        <p class="info-row">Your account shows a carried balance ($452.45 forward from prior months) plus the current bill. Call Cleco to request a <strong>payment arrangement</strong> before a formal disconnect notice is issued — once you're on a plan, LIHEAP Crisis funds can often be applied directly to the account on your behalf.</p>
+        <div class="contacts">
+          <div class="contact-item">
+            <span class="contact-label">Cleco Phone</span>
+            <span class="contact-val">1-800-622-6537</span>
+          </div>
+          <div class="contact-item">
+            <span class="contact-label">Account Number</span>
+            <span class="contact-val">200003558448</span>
+          </div>
+          <div class="contact-item">
+            <span class="contact-label">Service Address</span>
+            <span class="contact-val">208 Glen Ellen Dr, Pineville</span>
+          </div>
+          <div class="contact-item">
+            <span class="contact-label">Billing Name</span>
+            <span class="contact-val">Jeremy Fryar</span>
+          </div>
+        </div>
+        <hr class="divider">
+        <div>
+          <div class="script-label">Phone Script — Payment Plan Request</div>
+          <div class="script-box">
+            "Hi, I'm calling about my Cleco account. The account name is <span class="fill">Jeremy Fryar</span>, account number <span class="fill">200003558448</span>, service address 208 Glen Ellen Dr, Pineville, LA.<br><br>
+            My current balance is $912.81 and I'm experiencing financial hardship. I'm actively applying for LIHEAP crisis assistance to pay this balance, but while that's processing I'd like to set up a payment arrangement so I don't receive a disconnect notice.<br><br>
+            Can you tell me: (1) What payment arrangements are available? (2) Do you have a low-income rate reduction program I may qualify for? (3) How do I make sure LIHEAP can pay this directly once approved?"
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 4: HUD HOME REHAB -->
+  <div class="section">
+    <h2 class="section-heading"><span class="section-num">4</span> HUD HOME Program — Home Repair Grants &amp; Deferred Loans</h2>
+
+    <div class="card green-card">
+      <div class="card-head">
+        <h3>HOME Investment Partnerships — Homeowner Rehabilitation</h3>
+        <span class="card-tag green-tag">Roof · Electrical · Plumbing · Structural</span>
+      </div>
+      <div class="card-body">
+        <p class="info-row">The federal HOME program funds grants, deferred-payment loans (paid back only if you sell), and non-interest loans for owner-occupied home repairs. Income limit is 80% of Area Median Income — your $35k/year qualifies. Administered locally by LHC and Rapides Parish government. <strong>Your Hurricane Laura damage documentation strengthens this application significantly.</strong></p>
+        <div class="benefit-row">
+          <span class="benefit-chip">Grants available</span>
+          <span class="benefit-chip">Deferred loans (repay at sale)</span>
+          <span class="benefit-chip">Income ≤80% AMI</span>
+          <span class="benefit-chip">Min. $1,000 subsidy</span>
+        </div>
+        <div class="contacts">
+          <div class="contact-item">
+            <span class="contact-label">LHC Phone</span>
+            <span class="contact-val">225-763-8700</span>
+          </div>
+          <div class="contact-item">
+            <span class="contact-label">LHC Website</span>
+            <span class="contact-val">lhc.la.gov</span>
+          </div>
+          <div class="contact-item">
+            <span class="contact-label">Rapides Parish</span>
+            <span class="contact-val">rapides.org</span>
+          </div>
+          <div class="contact-item">
+            <span class="contact-label">HUD Hotline</span>
+            <span class="contact-val">1-800-569-4287</span>
+          </div>
+        </div>
+        <hr class="divider">
+        <div>
+          <div class="script-label">Phone Script — Call LHC at 225-763-8700</div>
+          <div class="script-box">
+            "Hi, my name is <span class="fill">Lindsey Fryar</span> and I own a home at <span class="fill">208 Glen Ellen Dr, Pineville, LA 71360</span> in Rapides Parish. I'm calling to ask about the HOME Program homeowner rehabilitation assistance — specifically grants or deferred-payment loans for home repairs.<br><br>
+            My home suffered significant damage from Hurricane Laura — roof damage, no attic insulation, electrical hazards, and structural cracks. My household income is approximately $35,000 per year. I have a disabled adult dependent in the household.<br><br>
+            Can you tell me if I qualify, which local program administrator handles Rapides Parish, and how to apply?"
+          </div>
+        </div>
+        <div>
+          <div class="script-label">Email — Subject: HOME Rehab Inquiry – Lindsey Fryar – Rapides Parish – Hurricane Laura Damage</div>
+          <div class="script-box">
+            Hello,<br><br>
+            My name is <span class="fill">Lindsey McCann Fryar</span>. I own and occupy my home at <span class="fill">208 Glen Ellen Dr, Pineville, LA 71360</span> (Rapides Parish). I am writing to inquire about HUD HOME Program homeowner rehabilitation assistance.<br><br>
+            Our home sustained damage beginning with Hurricane Laura (roof, insulation, structural, electrical). Our annual household income is approximately $35,000. We have a disabled adult dependent (Nathan Fryar, DOB 10/15/2004). We cannot take on additional debt, so I am specifically interested in grant or deferred-payment assistance.<br><br>
+            Please let me know which program administrator serves Rapides Parish, what documentation is needed, and whether an inspection can be scheduled.<br><br>
+            Phone: 318-392-3933 · Email: themavisjade@gmail.com<br><br>
+            Thank you,<br>Lindsey McCann Fryar
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 5: HAF -->
+  <div class="section">
+    <h2 class="section-heading"><span class="section-num">5</span> Louisiana HAF — Homeowner Assistance Fund (Mortgage)</h2>
+
+    <div class="card">
+      <div class="card-head">
+        <h3>Louisiana Housing Corporation (LHC) — LA HAF</h3>
+        <span class="card-tag">Mortgage · Taxes · Insurance</span>
+      </div>
+      <div class="card-body">
+        <p class="info-row">Covers past-due mortgage payments, property taxes, homeowner's insurance, HOA fees. For COVID-related hardship. Contact LHC to confirm current funding status — programs open and close as funds are depleted.</p>
+        <div class="contacts">
+          <div class="contact-item">
+            <span class="contact-label">Phone</span>
+            <span class="contact-val">1-888-454-2001</span>
+          </div>
+          <div class="contact-item">
+            <span class="contact-label">Website</span>
+            <span class="contact-val">lhc.la.gov</span>
+          </div>
+          <div class="contact-item">
+            <span class="contact-label">Email</span>
+            <span class="contact-val">hausistance@lhc.la.gov</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 6: WEATHERIZATION / CLECO POWERWISE -->
+  <div class="section">
+    <h2 class="section-heading"><span class="section-num">6</span> Free Weatherization — WAP + Cleco PowerWise (Rapides Parish)</h2>
+
+    <div class="card green-card">
+      <div class="card-head">
+        <h3>DOE Weatherization Assistance Program (WAP) via LIHEAP</h3>
+        <span class="card-tag green-tag">Free Insulation · Windows · HVAC — avg $8,547/home</span>
+      </div>
+      <div class="card-body">
+        <p class="info-row">The WAP installs <strong>free</strong> attic insulation, air sealing, window improvements, and HVAC repairs for income-eligible homeowners. Given your home has <strong>no attic insulation</strong> and single-pane windows, this program is one of the highest-impact applications you can make. Apply via 211 → local Community Action Agency. Average benefit in Louisiana: <strong>$8,547 per home</strong>. Nathan's disability provides priority status.</p>
+        <div class="benefit-row">
+          <span class="benefit-chip">Free attic insulation</span>
+          <span class="benefit-chip">Air sealing</span>
+          <span class="benefit-chip">HVAC repair/replacement</span>
+          <span class="benefit-chip">Window improvements</span>
+          <span class="benefit-chip">Avg $8,547 value</span>
+        </div>
+        <div class="contacts">
+          <div class="contact-item">
+            <span class="contact-label">Apply Via</span>
+            <span class="contact-val">Call or Text 211</span>
+          </div>
+          <div class="contact-item">
+            <span class="contact-label">LHC Contact</span>
+            <span class="contact-val">225-763-8700</span>
+          </div>
+          <div class="contact-item">
+            <span class="contact-label">Program Period</span>
+            <span class="contact-val">July 2026–June 2027</span>
+          </div>
+        </div>
+        <hr class="divider">
+        <div>
+          <div class="script-label">Phone Script — Call 211, ask for WAP Weatherization</div>
+          <div class="script-box">
+            "Hi, my name is <span class="fill">Lindsey Fryar</span> and I'm calling to apply for the DOE Weatherization Assistance Program. I live at <span class="fill">208 Glen Ellen Dr, Pineville, LA 71360</span> in Rapides Parish.<br><br>
+            My home has no attic insulation — it was removed after Hurricane Laura by FEMA contractors and never replaced — and I have original single-pane windows, several of which are cracked. My Cleco bill runs $350–$900/month for a 1,550 sq ft home, which I believe is directly related to the insulation and window issues.<br><br>
+            My household income is approximately $35,000/year. I have a disabled adult dependent — my son Nathan, DOB 10/15/2004, mental health disability — which I understand qualifies us for priority processing. What is the next step to get an assessment scheduled?"
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-head">
+        <h3>Cleco PowerWise — Approved Contractors · Rapides Parish</h3>
+        <span class="card-tag">Free Energy Audits · Weatherization Installs</span>
+      </div>
+      <div class="card-body">
+        <p class="info-row">These contractors are Cleco-approved for the PowerWise weatherization program and serve Rapides Parish. Call all three — some may offer free energy audits or work in conjunction with LIHEAP/WAP funding.</p>
+        <div class="table-wrap">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Contractor</th>
+                <th>Phone</th>
+                <th>Email</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>D&amp;A Conservation</strong></td>
+                <td>(870) 308-6987</td>
+                <td>Dnascheduling1@gmail.com</td>
+              </tr>
+              <tr>
+                <td><strong>First Star Energy</strong></td>
+                <td>(615) 944-1422</td>
+                <td>Jmlile@firststarenergy.com</td>
+              </tr>
+              <tr>
+                <td><strong>Free Lighting Corporation</strong></td>
+                <td>(318) 855-6833</td>
+                <td>freelightingcorp@aol.com</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <hr class="divider">
+        <div>
+          <div class="script-label">Email Script (send to all three)</div>
+          <div class="script-box">
+            Subject: Cleco PowerWise Weatherization Inquiry – 208 Glen Ellen Dr, Pineville LA<br><br>
+            Hello,<br><br>
+            My name is <span class="fill">Lindsey Fryar</span> and I am reaching out about weatherization services for my home at <span class="fill">208 Glen Ellen Dr, Pineville, LA 71360</span> (Rapides Parish). I am a Cleco customer (account 200003558448) and understand your company is an approved Cleco PowerWise contractor for our area.<br><br>
+            My home has no attic insulation (removed by FEMA after Hurricane Laura), original single-pane windows (several cracked), and HVAC airflow issues. My Cleco bill runs $350–$900/month for a 1,550 sq ft home.<br><br>
+            I am also applying for LIHEAP Weatherization Assistance and would like to know if your services can be coordinated with that funding. Are you available for an assessment? My income is approximately $35,000/year for a household of 3–4.<br><br>
+            Please contact me at 318-392-3933 or themavisjade@gmail.com.<br><br>
+            Thank you,<br>Lindsey McCann Fryar
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 7: HUD COUNSELING -->
+  <div class="section">
+    <h2 class="section-heading"><span class="section-num">7</span> HUD Housing Counseling (Free)</h2>
+    <div class="card">
+      <div class="card-head">
+        <h3>HUD-Approved Counselor — Free Expert Help</h3>
+        <span class="card-tag">Mortgage · Foreclosure Prevention · All Programs</span>
+      </div>
+      <div class="card-body">
+        <p class="info-row">A free HUD-approved counselor can help you apply for multiple programs at once, negotiate with your mortgage servicer, and navigate the paperwork. Especially useful when dealing with a high-interest post-COVID refinance.</p>
+        <div class="contacts">
+          <div class="contact-item">
+            <span class="contact-label">Phone</span>
+            <span class="contact-val">1-800-569-4287</span>
+          </div>
+          <div class="contact-item">
+            <span class="contact-label">Website</span>
+            <span class="contact-val">hud.gov/counseling</span>
+          </div>
+        </div>
+        <hr class="divider">
+        <div>
+          <div class="script-label">Phone Script</div>
+          <div class="script-box">
+            "Hi, I'm a homeowner in Louisiana experiencing financial hardship with my mortgage. I'd like to be connected with a free HUD-approved housing counselor in my area. My zip code is <span class="fill">71360</span>. I also need help with home repairs and want to apply for the HAF and HOME programs — I'd like a counselor who can help me manage multiple applications at the same time."
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 8: MORTGAGE SERVICER -->
+  <div class="section">
+    <h2 class="section-heading"><span class="section-num">8</span> Your Mortgage Servicer — Forbearance &amp; Hardship</h2>
+    <div class="card">
+      <div class="card-head">
+        <h3>Call the Number on Your Mortgage Statement</h3>
+        <span class="card-tag">Call Before Missing a Payment</span>
+      </div>
+      <div class="card-body">
+        <p class="info-row">Call your servicer immediately — before you miss a payment. Ask specifically about: forbearance, payment deferral, loan modification, and hardship programs. Mention your income, disability in the household, and Hurricane Laura damage. A high-interest COVID refinance may also be eligible for rate modification.</p>
+        <div class="contacts">
+          <div class="contact-item">
+            <span class="contact-label">Phone</span>
+            <span class="contact-val">See your mortgage statement</span>
+          </div>
+          <div class="contact-item">
+            <span class="contact-label">Have Ready</span>
+            <span class="contact-val">Loan number, income docs, Nathan's disability docs</span>
+          </div>
+        </div>
+        <hr class="divider">
+        <div>
+          <div class="script-label">Phone Script</div>
+          <div class="script-box">
+            "Hi, my name is <span class="fill">Lindsey Fryar</span> and my loan number is <span class="fill">[LOAN NUMBER]</span>. I'm calling because I'm experiencing financial hardship — our annual household income is about $35,000, I have a disabled dependent, and our home sustained significant damage from Hurricane Laura that we haven't been able to fully repair.<br><br>
+            I want to stay current on my loan and I'm actively applying for HAF assistance. While that processes, I'd like to discuss forbearance, payment deferral, or a loan modification to lower my rate. What programs do you have available right now and how quickly can I get enrolled?"
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 9: FEMA -->
+  <div class="section">
+    <h2 class="section-heading"><span class="section-num">9</span> FEMA — Additional Disaster Assistance</h2>
+    <div class="card">
+      <div class="card-head">
+        <h3>FEMA Disaster Assistance</h3>
+        <span class="card-tag">Hurricane Laura · New Declarations</span>
+      </div>
+      <div class="card-body">
+        <p class="info-row">You already received $2,200 from FEMA after Hurricane Laura, which covered only a fraction of your $40,000+ in damage. Check whether Louisiana has any new active disaster declarations that could allow you to re-apply. The water intrusion through the light fixture is an active safety hazard that should be documented and reported.</p>
+        <div class="contacts">
+          <div class="contact-item">
+            <span class="contact-label">Phone</span>
+            <span class="contact-val">1-800-621-3362</span>
+          </div>
+          <div class="contact-item">
+            <span class="contact-label">Website</span>
+            <span class="contact-val">disasterassistance.gov</span>
+          </div>
+        </div>
+        <hr class="divider">
+        <div>
+          <div class="script-label">Phone Script</div>
+          <div class="script-box">
+            "Hi, my name is <span class="fill">Lindsey Fryar</span> and I live at <span class="fill">208 Glen Ellen Dr, Pineville, LA 71360</span>. I previously received FEMA assistance after Hurricane Laura, but my home has ongoing unrepaired damage — including an active water leak through an electrical fixture during recent rain, which is a safety emergency.<br><br>
+            I'd like to know if there are any active disaster declarations that apply to my area that would allow me to re-apply for additional assistance. I can provide documentation of the original damage, the FEMA case, and the ongoing conditions."
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 10: SNAP -->
+  <div class="section">
+    <h2 class="section-heading"><span class="section-num">10</span> SNAP — Food Assistance (Frees Up Cash for Bills)</h2>
+    <div class="card">
+      <div class="card-head">
+        <h3>Louisiana DCFS — SNAP</h3>
+        <span class="card-tag">Apply Online in 20 Minutes</span>
+      </div>
+      <div class="card-body">
+        <p class="info-row">At $35,000/year for a household of 3–4, you very likely qualify for SNAP. Apply online at commonhelp.louisiana.gov — takes about 20 minutes. SNAP immediately frees up food budget cash that can go toward bills.</p>
+        <div class="contacts">
+          <div class="contact-item">
+            <span class="contact-label">Apply Online</span>
+            <span class="contact-val">commonhelp.louisiana.gov</span>
+          </div>
+          <div class="contact-item">
+            <span class="contact-label">Phone</span>
+            <span class="contact-val">1-888-524-3578</span>
+          </div>
+        </div>
+        <hr class="divider">
+        <div>
+          <div class="script-label">Phone Script (if applying by phone)</div>
+          <div class="script-box">
+            "Hi, I'd like to apply for SNAP food assistance. My name is <span class="fill">Lindsey Fryar</span>, I live in Rapides Parish at 208 Glen Ellen Dr, Pineville, 71360. My household has <span class="fill">3–4</span> people, annual income is approximately $35,000, and I have a disabled adult dependent. Can you walk me through the application?"
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 11: 211 / FINDHELP -->
+  <div class="section">
+    <h2 class="section-heading"><span class="section-num">11</span> 211 · FindHelp.org · St. Vincent de Paul</h2>
+    <div class="card">
+      <div class="card-head">
+        <h3>211 Louisiana — Routes You to Every Local Program</h3>
+        <span class="card-tag">Call This First for Emergencies</span>
+      </div>
+      <div class="card-body">
+        <p class="info-row">211 is the official routing system for LIHEAP, Community Action Agency programs, food banks, emergency cash, and utility assistance in Louisiana. Operators will connect you to the right Rapides Parish agency for your specific need.</p>
+        <div class="contacts">
+          <div class="contact-item">
+            <span class="contact-label">Call or Text</span>
+            <span class="contact-val">211</span>
+          </div>
+          <div class="contact-item">
+            <span class="contact-label">Online Search</span>
+            <span class="contact-val">findhelp.org</span>
+          </div>
+          <div class="contact-item">
+            <span class="contact-label">Also</span>
+            <span class="contact-val">uniteus.com</span>
+          </div>
+        </div>
+        <hr class="divider">
+        <div>
+          <div class="script-label">Phone Script</div>
+          <div class="script-box">
+            "Hi, my name is <span class="fill">Lindsey Fryar</span>. I'm a homeowner in Rapides Parish — zip code 71360 — and I need help with: (1) emergency utility assistance for a past-due Cleco bill, (2) home repair grants for Hurricane Laura damage, and (3) weatherization for a home with no attic insulation. I have a disabled adult dependent in the household. Can you connect me with the right local programs?"
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 12: HOMESTEAD EXEMPTION -->
+  <div class="section">
+    <h2 class="section-heading"><span class="section-num">12</span> Louisiana Homestead Exemption + Special Assessment</h2>
+    <div class="card">
+      <div class="card-head">
+        <h3>Rapides Parish Assessor's Office</h3>
+        <span class="card-tag">Permanent Property Tax Savings</span>
+      </div>
+      <div class="card-body">
+        <p class="info-row">File the homestead exemption to reduce your assessed property value by $7,500 (saving you ~$75–$200/year depending on millage). Also ask about the <strong>Special Assessment Level</strong> for households with disabled members — it freezes your assessed value so repairs don't raise your taxes.</p>
+        <div class="contacts">
+          <div class="contact-item">
+            <span class="contact-label">Rapides Assessor</span>
+            <span class="contact-val">rapides.org</span>
+          </div>
+          <div class="contact-item">
+            <span class="contact-label">LA Assessors</span>
+            <span class="contact-val">laassessors.com</span>
+          </div>
+        </div>
+        <hr class="divider">
+        <div>
+          <div class="script-label">Phone Script</div>
+          <div class="script-box">
+            "Hi, my name is <span class="fill">Lindsey Fryar</span> and I own a home at <span class="fill">208 Glen Ellen Dr, Pineville, LA 71360</span>. I'd like to file for the homestead exemption. I also have a disabled adult dependent living in the home and would like to ask about whether we qualify for the Special Assessment Level freeze. What documents do I need and can I do this by mail or online?"
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 13: TANF -->
+  <div class="section">
+    <h2 class="section-heading"><span class="section-num">13</span> TANF — Cash Assistance for Families</h2>
+    <div class="card">
+      <div class="card-head">
+        <h3>Louisiana DCFS — TANF</h3>
+        <span class="card-tag">Families with Children</span>
+      </div>
+      <div class="card-body">
+        <div class="contacts">
+          <div class="contact-item">
+            <span class="contact-label">Phone</span>
+            <span class="contact-val">1-888-524-3578</span>
+          </div>
+          <div class="contact-item">
+            <span class="contact-label">Website</span>
+            <span class="contact-val">dcfs.louisiana.gov</span>
+          </div>
+        </div>
+        <hr class="divider">
+        <div>
+          <div class="script-label">Phone Script</div>
+          <div class="script-box">
+            "Hi, my name is <span class="fill">Lindsey Fryar</span>. I'm calling to ask about TANF cash assistance. I have a six-year-old child in the household and an adult disabled dependent. Our annual household income is approximately $35,000. Can you tell me if we qualify and how to apply?"
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 14: DOCUMENT CHECKLIST -->
+  <div class="section">
+    <h2 class="section-heading"><span class="section-num">14</span> Document Checklist — Bring to Every Appointment</h2>
+    <div class="card">
+      <div class="card-head">
+        <h3>Required Documents (LIHEAP / WAP / HOME Programs)</h3>
+        <span class="card-tag">Gather These Before Calling</span>
+      </div>
+      <div class="card-body">
+        <p class="info-row">Prepare one folder with copies of everything below. Most programs require the same documents. Having them ready speeds up every application.</p>
+
+        <p class="info-row"><strong>Identity &amp; Household</strong></p>
+        <ul class="checklist">
+          <li>Social Security card — for EVERY household member (required by LIHEAP for all)
+            <span class="note">Lindsey, Jeremy, Nathan, and the 6-year-old</span>
+          </li>
+          <li>Government-issued photo ID — for applicant and all adults
+            <span class="note">Driver's license or state ID</span>
+          </li>
+          <li>Proof of physical address — utility bill, mortgage statement, or lease</li>
+          <li>Birth certificates for minor children</li>
+          <li>Nathan's disability documentation — doctor's letter, SSI award letter, or diagnosis records
+            <span class="note">This establishes priority status for LIHEAP and WAP</span>
+          </li>
+        </ul>
+
+        <p class="info-row" style="margin-top:10px;"><strong>Income &amp; Financial</strong></p>
+        <ul class="checklist">
+          <li>Most recent pay stubs (last 30 days) — for all working adults</li>
+          <li>Social Security or SSI award letters (if applicable)</li>
+          <li>Most recent federal tax return or W-2s</li>
+          <li>Bank statements — last 2–3 months</li>
+          <li>If no income: a signed zero-income statement</li>
+          <li>SNAP certification letter (if already receiving SNAP)</li>
+          <li>Unemployment insurance award letter (if applicable)</li>
+        </ul>
+
+        <p class="info-row" style="margin-top:10px;"><strong>Property &amp; Bills</strong></p>
+        <ul class="checklist">
+          <li>Current Cleco bill — Account 200003558448
+            <span class="note">September 2026 bill showing $912.81 balance</span>
+          </li>
+          <li>Mortgage statement — showing loan number and servicer contact</li>
+          <li>Property tax bill or assessment notice</li>
+          <li>Homeowner's insurance policy page</li>
+          <li>FEMA case number / prior assistance documentation
+            <span class="note">Shows Hurricane Laura damage history; strengthens repair applications</span>
+          </li>
+          <li>Photos of home damage — roof, insulation gap, cracked windows, electrical, structural cracks</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 15: HARDSHIP LETTER -->
+  <div class="section">
+    <h2 class="section-heading"><span class="section-num">15</span> Your Hardship Letter — Ready to Submit</h2>
+    <div class="card green-card">
+      <div class="card-head">
+        <h3>Fryar Home Repair Hardship Letter</h3>
+        <span class="card-tag green-tag">Submit with Every Application</span>
+      </div>
+      <div class="card-body">
+        <p class="info-row">You have already written a comprehensive hardship letter that documents the Hurricane Laura damage, your household situation, and all requested assistance. Attach it to every application — for HAF, HOME, LIHEAP, FEMA, and contractor estimates. Key facts your letter establishes:</p>
+        <ul class="checklist">
+          <li>Hurricane Laura caused roof damage; only a tarp exists; water enters light fixture (active hazard)</li>
+          <li>FEMA contractors removed attic insulation and never replaced it</li>
+          <li>Single-pane original windows — several cracked or covered in plastic</li>
+          <li>HVAC: transformer damage caused master bedroom to lose all airflow</li>
+          <li>Multiple non-working electrical outlets; sparking GFCI outlet</li>
+          <li>Cracked shower tiles, mold, under-sink moisture</li>
+          <li>Rotting deck with embedded tree debris</li>
+          <li>Structural wall and ceiling cracks from storm shifting</li>
+          <li>Foundation/slab flooding after rain</li>
+          <li>FEMA gave $2,200 toward a $40,000+ repair estimate; $9,000 deductible unpayable</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="doc-footer">
+    Prepared for Lindsey McCann Fryar · 208 Glen Ellen Dr, Pineville LA 71360 · October 2026<br>
+    Verify all contact information on official websites before calling · Programs subject to fund availability<br>
+    LHC: lhc.la.gov · 225-763-8700 | 211 for emergency utility help | Cleco: 1-800-622-6537
+  </div>
+
+</div>
